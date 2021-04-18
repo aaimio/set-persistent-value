@@ -1,6 +1,6 @@
 Also see [aaimio/get-persistent-value](https://github.com/aaimio/get-persistent-value)
 
-# Get persistent value
+# Set persistent value
 
 This action sets a value that persists through GitHub Actions jobs, steps, or workflows.
 

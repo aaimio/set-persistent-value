@@ -10,7 +10,7 @@ jobs:
         uses: aaimio/set-persistent-value@master
         with:
           unique_key: ${{ secrets.UNIQUE_KEY }}
-          key: test_key
-          value: test_value
+          key: set_persistent_value_test
+          value: "This is a test value"
       - name: Return a persistent value
         run: echo "The returned value is '${{ steps.set_persistent_value_step.outputs.value }}'"

@@ -1,5 +1,8 @@
 name: 'Set persistent value'
 description: 'Sets a value that persists through GitHub Actions jobs and workflows.'
+branding:
+  icon: 'save'
+  color: 'orange'
 inputs:
   unique_key:
     description: 'Your secret unique key (see README.md on how to get one).'
