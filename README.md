@@ -1,3 +1,5 @@
+![uptime](https://img.shields.io/uptimerobot/ratio/m787894343-bf1ddacfde07d95ec87e488c?style=flat-square)
+
 Also see [aaimio/get-persistent-value](https://github.com/aaimio/get-persistent-value)
 
 # Set persistent value
