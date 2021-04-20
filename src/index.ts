@@ -16,7 +16,7 @@ try {
     method: "POST",
     headers: new Headers({
       "content-type": "application/json",
-      "x-api-key": core.getInput("unique_key"),
+      "x-api-key": core.getInput("access_token"),
       "x-github-repo": `${github.context.repo.owner}/${github.context.repo.repo}`,
     }),
     body: payload,

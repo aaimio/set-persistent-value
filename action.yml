@@ -4,8 +4,8 @@ branding:
   icon: 'save'
   color: 'orange'
 inputs:
-  unique_key:
-    description: 'Your secret unique key (see README.md on how to get one).'
+  access_token:
+    description: 'Your access token (see README.md on how to get one).'
     required: true
   key:
     description: "The key to retrieve the value with."

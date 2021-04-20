@@ -14,11 +14,11 @@ This action sets a value that persists through GitHub Actions jobs, steps, or wo
 
 This action takes the inputs below:
 
-- `unique_key`: Use `curl` to generate one (or simply [visit the URL](https://persistent.aaim.io/api/values/new_unique_key?output=plain) directly):
-  - After generating, add the unique key as a GitHub secret for your repo (e.g. `PERSISTENT_VALUE_UNIQUE_KEY`).
+- `access_token`: Use `curl` to generate one (or simply [visit the URL](https://persistent.aaim.io/api/values/new_access_token?output=plain) directly):
+  - After generating, add the access token as a GitHub secret for your repo (e.g. `PERSISTENT_VALUE_ACCESS_TOKEN`).
 
 ```bash
-$ curl https://persistent.aaim.io/api/values/new_unique_key?output=plain
+$ curl https://persistent.aaim.io/api/values/new_access_token?output=plain
 ```
 
 - `key`: An identifier with which you can retrieve the persistent value.
@@ -34,7 +34,7 @@ steps:
   id: set_persistent_value
   uses: aaimio/set-persistent-value@master
   with:
-    unique_key: ${{ secrets.PERSISTENT_VALUE_UNIQUE_KEY }}
+    access_token: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}
     key: foo
     value: bar
 ```
@@ -49,7 +49,7 @@ steps:
   id: get_persistent_value
   uses: aaimio/get-persistent-value@master
   with:
-    unique_key: ${{ secrets.PERSISTENT_VALUE_UNIQUE_KEY }}
+    access_token: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}
     key: foo
 - name: Some other step
   run: |
