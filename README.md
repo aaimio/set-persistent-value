@@ -78,7 +78,7 @@ curl -X POST \
 ```bash
 SOME_VALUE=$(curl -X GET \
   -H 'x-api-key: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}' \
-  -H 'x-github-repo: <GITHUB_OWNER/GITHUB_REPO>'
+  -H 'x-github-repo: <GITHUB_OWNER/GITHUB_REPO>' \
   'https://persistent.aaim.io/api/values/get?key=YOUR_KEY&output=plain')
 
 echo $SOME_VALUE
