@@ -9,10 +9,13 @@ inputs:
     required: true
   key:
     description: "The key to retrieve the value with."
-    required: true
+    required: false
   value:
     description: "The value to be stored."
-    required: true
+    required: false
+  json:
+    description: "The value(s) to be stored"
+    required: false
 outputs:
   value:
     description: "The value that was stored."

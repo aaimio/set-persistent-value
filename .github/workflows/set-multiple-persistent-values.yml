@@ -3,15 +3,14 @@ on: workflow_dispatch
 jobs:
   set_persistent_value_job:
     runs-on: ubuntu-latest
-    name: Set a persistent value
+    name: Set multiple persistent values
     steps:
       - name: Set a persistent value
         id: set_persistent_value_step
         uses: aaimio/set-persistent-value@master
         with:
+          json: '{ "some_key": 42, "foo": "bar", "boolean_value": true }'
           access_token: ${{ secrets.ACCESS_TOKEN }}
-          key: set_persistent_value_test
-          value: "This is a test value"
-      - name: Announce if value was set successfully
+      - name: Announce if value were set successfully
         if: steps.set_persistent_value_step.outputs.success == 'true'
-        run: echo "The value was set."
+        run: echo "The value were set."
