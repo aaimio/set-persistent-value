@@ -1,17 +1,17 @@
 ![uptime](https://img.shields.io/uptimerobot/ratio/m787894343-bf1ddacfde07d95ec87e488c?style=flat-square)
 
-- For setting values: [aaimio/set-persistent-value](https://github.com/aaimio/set-persistent-value)
-- For getting values: [aaimio/get-persistent-value](https://github.com/aaimio/get-persistent-value)
+- Set a persistent value: [aaimio/set-persistent-value](https://github.com/aaimio/set-persistent-value)
+- Get a persistent value: [aaimio/get-persistent-value](https://github.com/aaimio/get-persistent-value)
 
 # Overview
 
 **Set or get a value that persists through GitHub Actions jobs, steps, or workflows.**
 
-For example:
+Example use cases:
 
-- Set or get a hash that can be used for comparison, e.g. execute some logic if a file hash has changed.
-- Set or get a URL required in other steps, jobs, or workflows, e.g. a Vercel preview URL to run a Lighthouse report on.
-- Set a boolean value to keep track of whether something was executed or not, e.g. to make sure some logic only runs once.
+- Execute some logic if a file hash has changed
+- Keep track of a URL required in other steps of your workflow (like a Vercel preview URL)
+- Set a boolean value to make other steps in your workflow optional
 
 ## Getting an access token
 
@@ -25,8 +25,8 @@ The [set-persistent-value](https://github.com/aaimio/set-persistent-value) actio
 
 | Input | Description |
 | --- | --- |
-| `key` | An identifier with which you can retrieve the persistent value. |
-| `value` | The persistent value to store (can be a string, number, or boolean). |
+| `key` | An identifier with which you can retrieve the stored value. |
+| `value` | The value to store |
 | `access_token` | Use `curl` to generate one (or simply [visit the URL](https://persistent.aaim.io/api/values/new_access_token?output=plain) directly), after generating, add the access token as a GitHub secret for your repo (e.g. `PERSISTENT_VALUE_ACCESS_TOKEN`). You can generate a token using `curl https://persistent.aaim.io/api/values/new_access_token?output=plain`. |
 
 ```yaml
@@ -46,7 +46,7 @@ The [get-persistent-value](https://github.com/aaimio/get-persistent-value) actio
 
 | Input | Description |
 | --- | --- |
-| `key` | An identifier with which you can retrieve the persistent value. |
+| `key` | An identifier with which you can retrieve the stored value. |
 | `access_token` | Use `curl` to generate one (or simply [visit the URL](https://persistent.aaim.io/api/values/new_access_token?output=plain) directly), after generating, add the access token as a GitHub secret for your repo (e.g. `PERSISTENT_VALUE_ACCESS_TOKEN`). You can generate a token using `curl https://persistent.aaim.io/api/values/new_access_token?output=plain`. |
 
 ```yaml
@@ -64,9 +64,9 @@ steps:
 
 ## Using the API directly
 
-In the background, the action is interfacing with a simple key-value store API built specifically for this use case. To reduce the overhead of downloading the action(s) or introducing another step into your workflow, you're more than welcome to use the API directly:
+In the background, the action is interfacing with a simple key-value store built specifically for this use case. 
 
-- The `x-github-repo` header is completely optional, it will only keep track of which repositories are using the action or API.
+To reduce the overhead of downloading the action(s) or introducing yet another step into your workflow, you're more than welcome to use the API directly:
 
 ### Set a persistent value
 
@@ -89,6 +89,8 @@ SOME_VALUE=$(curl -X GET \
 
 echo $SOME_VALUE
 ```
+
+- The `x-github-repo` header is completely optional, it will only keep track of which repositories are using the action or API.
 
 ## Things to note
 
