@@ -13,7 +13,13 @@ For example:
 - Set or get a URL required in other steps, jobs, or workflows, e.g. a Vercel preview URL to run a Lighthouse report on.
 - Set a boolean value to keep track of whether something was executed or not, e.g. to make sure some logic only runs once.
 
-# Set a persistent value
+## Getting an access token
+
+Generate an access token by visiting the URL below:
+
+- https://persistent.aaim.io/api/values/new_access_token?output=plain
+
+## Set a persistent value
 
 The [set-persistent-value](https://github.com/aaimio/set-persistent-value) action takes the inputs below:
 
@@ -34,7 +40,7 @@ steps:
     access_token: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}
 ```
 
-# Get a persistent value
+## Get a persistent value
 
 The [get-persistent-value](https://github.com/aaimio/get-persistent-value) action takes the inputs below:
 
@@ -56,13 +62,13 @@ steps:
     echo ${{ steps.get_persistent_value.outputs.value }}
 ```
 
-# Using the API directly
+## Using the API directly
 
 In the background, the action is interfacing with a simple key-value store API built specifically for this use case. To reduce the overhead of downloading the action(s) or introducing another step into your workflow, you're more than welcome to use the API directly:
 
-- The `x-github-repo` header is optional, it will only keep track of which repositories are using the action or API.
+- The `x-github-repo` header is completely optional, it will only keep track of which repositories are using the action or API.
 
-## Set a persistent value
+### Set a persistent value
 
 ```bash
 curl -X POST \
@@ -73,7 +79,7 @@ curl -X POST \
   'https://persistent.aaim.io/api/values/set?key=YOUR_KEY&output=plain'
 ```
 
-## Get a persistent value
+### Get a persistent value
 
 ```bash
 SOME_VALUE=$(curl -X GET \
@@ -84,6 +90,6 @@ SOME_VALUE=$(curl -X GET \
 echo $SOME_VALUE
 ```
 
-# Things to note
+## Things to note
 
 - Items will persist until the `access_token` hasn't been used for 3 months.
