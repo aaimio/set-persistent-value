@@ -1,4 +1,4 @@
-name: Run tests on incoming PR
+name: run scheduled check
 
 on:
   schedule:
