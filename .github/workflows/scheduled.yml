@@ -1,0 +1,23 @@
+name: Run tests on incoming PR
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  set_persistent_value_job:
+    name: Set a persistent value
+    runs-on: ubuntu-latest
+    steps:
+      - id: set_persistent_value_step
+        name: Set a persistent value
+        uses: aaimio/set-persistent-value@master
+        with:
+          access_token: ${{ secrets.ACCESS_TOKEN }}
+          key: set_persistent_value_test
+          value: This is a test value
+
+      - id: set_persistent_value_step2
+        name: Announce if value was set successfully
+        if: steps.set_persistent_value_step.outputs.success == 'true'
+        run: echo "The value was set."
