@@ -95,3 +95,4 @@ echo $SOME_VALUE
 ## Things to note
 
 - Items will persist until the `access_token` hasn't been used for 3 months.
+- Any questions, comments, feedback? [Join the #gh-persistent-values channel on my Slack](https://join.slack.com/t/aarons-slack-group/shared_invite/zt-ufy5w5rl-_xPGk4Tew4HyHSiYhsD33w).
