@@ -13,6 +13,8 @@ Example use cases:
 - Keep track of a URL required in other steps of your workflow (like a Vercel preview URL)
 - Set a boolean value to make other steps in your workflow optional
 
+Any questions, comments, feedback? [Join the #gh-persistent-values channel on my Slack](https://github.com/aaimio/set-persistent-value/issues/3).
+
 ## Getting an access token
 
 Generate an access token by visiting the URL below:
@@ -95,4 +97,3 @@ echo $SOME_VALUE
 ## Things to note
 
 - Items will persist until the `access_token` hasn't been used for 3 months.
-- Any questions, comments, feedback? [Join the #gh-persistent-values channel on my Slack](https://join.slack.com/t/aarons-slack-group/shared_invite/zt-ufy5w5rl-_xPGk4Tew4HyHSiYhsD33w).
