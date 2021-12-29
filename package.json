@@ -1,10 +1,9 @@
 {
   "name": "set-persistent-value",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Sets a value that persists through GitHub Actions jobs and workflows.",
-  "main": "index.js",
   "scripts": {
-    "build": "ncc build src/index.ts --minify --license licenses.txt",
+    "build": "ncc build ./src/index.ts --minify --license licenses.txt",
     "eslint": "eslint src/**",
     "prepare": "husky install",
     "prettify": "prettier --write src/"
@@ -13,7 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/aaimio/set-persistent-value.git"
   },
-  "keywords": [],
   "author": "Aaron Imming <aaim@protonmail.com>",
   "license": "MIT",
   "bugs": {
@@ -21,18 +19,21 @@
   },
   "homepage": "https://github.com/aaimio/set-persistent-value#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6",
-    "@actions/github": "^4.0.0",
-    "node-fetch": "^2.6.1"
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "axios": "^0.24.0"
   },
   "devDependencies": {
-    "@types/node-fetch": "^2.5.8",
-    "@typescript-eslint/eslint-plugin": "^4.20.0",
-    "@typescript-eslint/parser": "^4.20.0",
-    "@vercel/ncc": "^0.28.3",
-    "eslint": "^7.23.0",
-    "husky": "^6.0.0",
-    "prettier": "2.2.1",
-    "typescript": "^4.2.3"
+    "@types/node": "^17.0.5",
+    "@types/node-fetch": "^3.0.2",
+    "@types/webpack": "^5.28.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "@vercel/ncc": "^0.33.1",
+    "eslint": "^8.5.0",
+    "husky": "^7.0.4",
+    "prettier": "2.5.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
   }
 }

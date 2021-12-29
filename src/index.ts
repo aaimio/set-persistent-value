@@ -1,6 +1,6 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
-import fetch, { Headers, Response } from "node-fetch";
+import axios, { AxiosResponse } from "axios";
 import { URLSearchParams } from "url";
 
 interface ApiResponse {
@@ -9,11 +9,11 @@ interface ApiResponse {
   message?: string;
 }
 
-const handleApiResponse = (json: ApiResponse) => {
-  if (json.status === "ok") {
+const handleApiResponse = (json: AxiosResponse<ApiResponse>) => {
+  if (json.data.status === "ok") {
     core.setOutput("success", true);
   } else {
-    core.setFailed(json.message ?? "Unknown error");
+    core.setFailed(json.data.message ?? "Unknown error");
   }
 };
 
@@ -22,36 +22,35 @@ try {
   const value = core.getInput("value");
   const json = core.getInput("json");
 
-  const fetch_payload = {
-    method: "POST",
-    headers: new Headers({
-      "content-type": "application/json",
-      "x-api-key": core.getInput("access_token"),
-      "x-github-repo": `${github.context.repo.owner}/${github.context.repo.repo}`,
-    }),
+  const headers = {
+    "content-type": "application/json",
+    "x-api-key": core.getInput("access_token"),
+    "x-github-repo": `${github.context.repo.owner}/${github.context.repo.repo}`,
   };
 
+  // Single value
   if (key && value) {
-    const base_url = "https://persistent.aaim.io/api/values/set";
-    const url_params = new URLSearchParams({ key: core.getInput("key") });
+    const baseUrl = "https://persistent.aaim.io/api/values/set";
+    const urlParams = new URLSearchParams({ key: core.getInput("key") });
+    const targetUrl = `${baseUrl}?${urlParams.toString()}`;
     const payload = JSON.stringify({ value: core.getInput("value") });
 
-    fetch(`${base_url}?${url_params.toString()}`, {
-      ...fetch_payload,
-      body: payload,
-    })
-      .then((response: Response) => response.json())
+    axios
+      .post<ApiResponse>(targetUrl, payload, { headers })
       .then(handleApiResponse)
       .catch((error) => core.setFailed(error));
-  } else if (json) {
-    const input_json = JSON.parse(json);
-    const base_url = "https://persistent.aaim.io/api/values/set_multiple";
+  }
+  // Multiple values
+  else if (json) {
+    const inputJson = JSON.parse(json);
+    const baseUrl = "https://persistent.aaim.io/api/values/set_multiple";
 
-    fetch(base_url, { ...fetch_payload, body: JSON.stringify(input_json) })
-      .then((response: Response) => response.json())
+    axios
+      .post<ApiResponse>(baseUrl, JSON.stringify(inputJson), { headers })
       .then(handleApiResponse)
       .catch((error) => core.setFailed(error));
   }
 } catch (error) {
-  core.setFailed(error.message);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  core.setFailed(error as any);
 }

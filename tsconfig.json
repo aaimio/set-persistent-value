@@ -7,6 +7,5 @@
     "strict": true,
     "target": "ES6"
   },
-  "compileOnSave": true,
   "include": ["src"]
 }
