@@ -19,10 +19,10 @@
 - Keep track of a URL required in other steps of your workflow (like a Vercel preview URL)
 - Set a boolean value to make other steps in your workflow optional
 
+Any questions, comments, feedback? [Join the #gh-persistent-values channel](https://join.slack.com/t/aaimio/shared_invite/zt-ufy5w5rl-_xPGk4Tew4HyHSiYhsD33w) or [open a new issue](https://github.com/aaimio/set-persistent-value/issues/new).
+
 - [set-persistent-value](https://github.com/aaimio/set-persistent-value)
 - [get-persistent-value](https://github.com/aaimio/get-persistent-value)
-
-Any questions, comments, feedback? [Join the #gh-persistent-values channel](https://join.slack.com/t/aaimio/shared_invite/zt-ufy5w5rl-_xPGk4Tew4HyHSiYhsD33w) or [open a new issue](https://github.com/aaimio/set-persistent-value/issues/new).
 
 ## Usage
 
