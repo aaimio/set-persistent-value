@@ -3,15 +3,15 @@
 ![uptime](https://badgen.net/uptime-robot/week/m787894343-bf1ddacfde07d95ec87e488c)
 ![uptime](https://badgen.net/uptime-robot/month/m787894343-bf1ddacfde07d95ec87e488c)
 
-- [Set a persistent value](#set-a-persistent-value)
-- [Get a persistent value](#get-a-persistent-value)
-- [Using the API directly](#using-the-api-directly)
-  - [Setting a value](#setting-a-value)
-  - [Getting a value](#getting-a-value)
-- [Things to note](#things-to-note)
+- [Usage](#usage)
+  - [Set a persistent value](#set-a-persistent-value)
+  - [Get a persistent value](#get-a-persistent-value)
+  - [Using the API directly](#using-the-api-directly)
+    - [Setting a value](#setting-a-value)
+    - [Getting a value](#getting-a-value)
+  - [Things to note](#things-to-note)
 
 # Overview
-
 
 **Set or get a value that persists through GitHub Actions jobs, steps, or workflows.**
 
@@ -19,19 +19,23 @@
 - Keep track of a URL required in other steps of your workflow (like a Vercel preview URL)
 - Set a boolean value to make other steps in your workflow optional
 
+- [set-persistent-value](https://github.com/aaimio/set-persistent-value)
+- [get-persistent-value](https://github.com/aaimio/get-persistent-value)
+
 Any questions, comments, feedback? [Join the #gh-persistent-values channel](https://join.slack.com/t/aaimio/shared_invite/zt-ufy5w5rl-_xPGk4Tew4HyHSiYhsD33w) or [open a new issue](https://github.com/aaimio/set-persistent-value/issues/new).
 
+## Usage
 
-## Set a persistent value
+### [Set a persistent value](#set-a-persistent-value)
 
 **Set a single value**
 
 For single values, the action takes the inputs below:
 
-| Input          | Description                                                                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `key`          | The key for the value you want to set                                                                                                                                                      |
-| `value`        | The value to set                                                                                                                                                                           |
+| Input          | Description                                                                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`          | The key for the value you want to set                                                                                                                                                     |
+| `value`        | The value to set                                                                                                                                                                          |
 | `access_token` | [Visit this URL](https://persistent.aaim.io/api/values/new_access_token?output=plain), then add this access token as a GitHub secret to your repo (e.g. `PERSISTENT_VALUE_ACCESS_TOKEN`). |
 
 ```yaml
@@ -49,9 +53,9 @@ steps:
 
 For multiple values, the action takes the inputs below:
 
-| Input          | Description                                                                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `json`         | A JSON string with the keys and values you want to set                                                                                                                                     |
+| Input          | Description                                                                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `json`         | A JSON string with the keys and values you want to set                                                                                                                                    |
 | `access_token` | [Visit this URL](https://persistent.aaim.io/api/values/new_access_token?output=plain), then add this access token as a GitHub secret to your repo (e.g. `PERSISTENT_VALUE_ACCESS_TOKEN`). |
 
 ```yaml
@@ -64,13 +68,13 @@ steps:
       access_token: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}
 ```
 
-## Get a persistent value
+### [Get a persistent value](#get-a-persistent-value)
 
 The [get-persistent-value](https://github.com/aaimio/get-persistent-value) action takes the inputs below:
 
-| Input          | Description                                                                                                                                                                                |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `key`          | The key for the value you want to retrieve                                                                                                                                                 |
+| Input          | Description                                                                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `key`          | The key for the value you want to retrieve                                                                                                                                                |
 | `access_token` | [Visit this URL](https://persistent.aaim.io/api/values/new_access_token?output=plain), then add this access token as a GitHub secret to your repo (e.g. `PERSISTENT_VALUE_ACCESS_TOKEN`). |
 
 ```yaml
@@ -86,13 +90,13 @@ steps:
       echo ${{ steps.get_persistent_value.outputs.value }}
 ```
 
-## Using the API directly
+### Using the API directly
 
 In the background, the action is talking to a simple key-value store.
 
 To reduce the overhead of downloading the action or introducing yet another step into your workflow, you could also use the API directly:
 
-### Setting a value
+#### Setting a value
 
 ```bash
 curl -X POST \
@@ -103,7 +107,7 @@ curl -X POST \
   'https://persistent.aaim.io/api/values/set?key=YOUR_KEY&output=plain'
 ```
 
-### Getting a value
+#### Getting a value
 
 ```bash
 SOME_VALUE=$(curl -X GET \
@@ -116,6 +120,6 @@ echo $SOME_VALUE
 
 - The `x-github-repo` header is completely optional, it will only keep track of which repositories are using the action or API.
 
-## Things to note
+### Things to note
 
 - Items will persist until the `access_token` hasn't been used for 3 months.
