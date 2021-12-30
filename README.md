@@ -26,7 +26,7 @@ Any questions, comments, feedback? [Join the #gh-persistent-values channel](http
 
 ## Usage
 
-### [Set a persistent value](#set-a-persistent-value)
+### [Set a persistent value](https://github.com/aaimio/set-persistent-value)
 
 **Set a single value**
 
@@ -68,9 +68,9 @@ steps:
       access_token: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}
 ```
 
-### [Get a persistent value](#get-a-persistent-value)
+### [Get a persistent value](https://github.com/aaimio/get-persistent-value)
 
-The [get-persistent-value](https://github.com/aaimio/get-persistent-value) action takes the inputs below:
+This action takes the inputs below:
 
 | Input          | Description                                                                                                                                                                               |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
