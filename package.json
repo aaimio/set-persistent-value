@@ -1,6 +1,6 @@
 {
   "name": "set-persistent-value",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Sets a value that persists through GitHub Actions jobs and workflows.",
   "scripts": {
     "build": "ncc build ./src/index.ts --minify --license licenses.txt",
