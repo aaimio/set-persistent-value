@@ -1,5 +1,5 @@
-import * as core from "@actions/core";
-import * as github from "@actions/github";
+import { getInput, setOutput, setFailed } from "@actions/core";
+import { context } from "@actions/github";
 import axios, { AxiosResponse } from "axios";
 import { URLSearchParams } from "url";
 
@@ -11,34 +11,34 @@ interface ApiResponse {
 
 const handleApiResponse = (json: AxiosResponse<ApiResponse>) => {
   if (json.data.status === "ok") {
-    core.setOutput("success", true);
+    setOutput("success", true);
   } else {
-    core.setFailed(json.data.message ?? "Unknown error");
+    setFailed(json.data.message ?? "Unknown error");
   }
 };
 
 try {
-  const key = core.getInput("key");
-  const value = core.getInput("value");
-  const json = core.getInput("json");
+  const key = getInput("key");
+  const value = getInput("value");
+  const json = getInput("json");
 
   const headers = {
     "content-type": "application/json",
-    "x-api-key": core.getInput("access_token"),
-    "x-github-repo": `${github.context.repo.owner}/${github.context.repo.repo}`,
+    "x-api-key": getInput("access_token"),
+    "x-github-repo": `${context.repo.owner}/${context.repo.repo}`,
   };
 
   // Single value
   if (key && value) {
     const baseUrl = "https://persistent.aaim.io/api/values/set";
-    const urlParams = new URLSearchParams({ key: core.getInput("key") });
+    const urlParams = new URLSearchParams({ key: getInput("key") });
     const targetUrl = `${baseUrl}?${urlParams.toString()}`;
-    const payload = JSON.stringify({ value: core.getInput("value") });
+    const payload = JSON.stringify({ value: getInput("value") });
 
     axios
       .post<ApiResponse>(targetUrl, payload, { headers })
       .then(handleApiResponse)
-      .catch((error) => core.setFailed(error));
+      .catch((error) => setFailed(error));
   }
   // Multiple values
   else if (json) {
@@ -48,9 +48,9 @@ try {
     axios
       .post<ApiResponse>(baseUrl, JSON.stringify(inputJson), { headers })
       .then(handleApiResponse)
-      .catch((error) => core.setFailed(error));
+      .catch((error) => setFailed(error));
   }
 } catch (error) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  core.setFailed(error as any);
+  console.error(error);
+  setFailed(error as Error);
 }
