@@ -19,21 +19,20 @@
   },
   "homepage": "https://github.com/aaimio/set-persistent-value#readme",
   "dependencies": {
-    "@actions/core": "^1.6.0",
-    "@actions/github": "^5.0.0",
-    "axios": "^0.24.0"
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "axios": "^1.3.5"
   },
   "devDependencies": {
-    "@types/node": "^17.0.5",
-    "@types/node-fetch": "^3.0.2",
-    "@types/webpack": "^5.28.0",
-    "@typescript-eslint/eslint-plugin": "^5.8.1",
-    "@typescript-eslint/parser": "^5.8.1",
-    "@vercel/ncc": "^0.33.1",
-    "eslint": "^8.5.0",
+    "@types/node": "^18.15.11",
+    "@types/node-fetch": "^2.6.3",
+    "@types/webpack": "^5.28.1",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "@vercel/ncc": "^0.36.1",
+    "eslint": "^8.38.0",
     "husky": "^7.0.4",
-    "prettier": "2.5.1",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.4"
+    "prettier": "^2.8.7",
+    "typescript": "^5.0.4"
   }
 }
