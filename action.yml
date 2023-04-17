@@ -20,5 +20,5 @@ outputs:
   value:
     description: "The value that was stored."
 runs:
-  using: "node12"
+  using: "node16"
   main: "dist/index.js"
