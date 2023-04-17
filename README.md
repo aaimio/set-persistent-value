@@ -42,7 +42,7 @@ For single values, the action takes the inputs below:
 steps:
   - name: Set a persistent value
     id: set_persistent_value
-    uses: aaimio/set-persistent-value@v1.1.2
+    uses: aaimio/set-persistent-value@v1.2.1
     with:
       key: foo
       value: bar
@@ -62,7 +62,7 @@ For multiple values, the action takes the inputs below:
 steps:
   - name: Set a persistent value
     id: set_persistent_value
-    uses: aaimio/set-persistent-value@v1.1.2
+    uses: aaimio/set-persistent-value@v1.2.1
     with:
       json: '{ "some_key": 42, "foo": "bar", "boolean_value": true }'
       access_token: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}
@@ -81,7 +81,7 @@ This action takes the inputs below:
 steps:
   - name: Get a persistent value
     id: get_persistent_value
-    uses: aaimio/get-persistent-value@v1.1.2
+    uses: aaimio/get-persistent-value@v1.2.1
     with:
       key: foo
       access_token: ${{ secrets.PERSISTENT_VALUE_ACCESS_TOKEN }}
